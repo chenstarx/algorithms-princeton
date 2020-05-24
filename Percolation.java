@@ -4,7 +4,7 @@ public class Percolation {
 
     private WeightedQuickUnionUF uf;
     private boolean[] open;
-    
+
     private int size;
     private int count;
 
@@ -14,10 +14,7 @@ public class Percolation {
             throw new IllegalArgumentException("index " + n + " is no larger than 0");  
         }
         size = n;
-        init();
-    }
 
-    public void init() {
         int length = size * size + 2; // 1 virtual top and 1 virtual bottom
 
         uf = new WeightedQuickUnionUF(length);

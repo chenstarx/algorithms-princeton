@@ -14,7 +14,7 @@ public class PercolationStats {
             throw new IllegalArgumentException("invalid arguments");  
         }
 
-        Percolation p = new Percolation(n);
+        Percolation p;
 
         int randX;
         int randY;
@@ -23,7 +23,7 @@ public class PercolationStats {
 
         for (int i = 0; i < trials; i++) {
 
-            p.init();
+            p = new Percolation(n);
 
             while (!p.percolates()) {
 
@@ -49,10 +49,6 @@ public class PercolationStats {
         confidenceLo = mean - conf;
         confidenceHi = mean + conf;
 
-        System.out.println("mean                    = " + mean);
-        System.out.println("stddev                  = " + stddev);
-        System.out.println("95% confidence interval = [" + confidenceLo + ", " + confidenceHi + "]");
-
     }
 
     // sample mean of percolation threshold
@@ -75,7 +71,11 @@ public class PercolationStats {
         return confidenceHi;
     }
 
-    // public static void main(String[] args) {
-    //     new PercolationStats(200, 100);
-    // }
+    public static void main(String[] args) {
+        PercolationStats ps = new PercolationStats(200, 100);
+        
+        System.out.println("mean                    = " + ps.mean());
+        System.out.println("stddev                  = " + ps.stddev());
+        System.out.println("95% confidence interval = [" + ps.confidenceLo() + ", " + ps.confidenceHi() + "]");
+    }
 }
