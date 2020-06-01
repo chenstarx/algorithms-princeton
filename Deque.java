@@ -2,9 +2,9 @@ import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item> {
 
-    private Node first = null;
-    private Node last = null;
-    private int size = 0;
+    private Node first;
+    private Node last;
+    private int size;
 
     private class Node {
         Item item;
@@ -14,12 +14,9 @@ public class Deque<Item> implements Iterable<Item> {
 
     // construct an empty deque
     public Deque() {
-        first = first.next;
-        size -= 1;
-        if (isEmpty()) {
-            first = null;
-            last = null;
-        }
+        first = null;
+        last = null;
+        size = 0;
     }
 
     // is the deque empty?
@@ -78,6 +75,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = null;
             last = null;
         }
+        else first.prev = null;
         return item;
     }
 
@@ -91,6 +89,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = null;
             last = null;
         }
+        else last.next = null;
         return item;
     }
 
@@ -104,7 +103,7 @@ public class Deque<Item> implements Iterable<Item> {
         public boolean hasNext() { return current != null; }
         public void remove() { throw new UnsupportedOperationException(); }
         public Item next() {
-            if (current.next == null) throw new java.util.NoSuchElementException("no more data");
+            if (current == null) throw new java.util.NoSuchElementException("no more data");
             Item item = current.item;
             current = current.next;
             return item;
@@ -113,7 +112,30 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {
+        Deque<String> d = new Deque<String>();
+        d.addLast("a");
+        d.addLast("b");
+        d.addLast("c");
+        d.addLast("d");
+        for (String s : d)
+            System.out.print(s);
         
+        System.out.println(" ");
+        d.addFirst("e");
+        for (String s : d)
+            System.out.print(s);
+
+            
+        System.out.println(" ");
+        d.removeLast();
+        for (String s : d)
+            System.out.print(s);
+            
+        System.out.println(" ");
+        d.removeLast();
+        for (String s : d)
+            System.out.print(s);
+
     }
 
 }
