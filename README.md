@@ -4,5 +4,6 @@ This is my assignments solution repository for the Coursera course: [Algorithms,
 
 Marks for each week:
 
-- Week 1: 93%
+- Week 1: 92.73% (93/100)
+- Week 2: 99.85% (100/100)
 
